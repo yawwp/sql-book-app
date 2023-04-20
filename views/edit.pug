@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h2= title
+  
+  include page-not-found 
+
+  form(action="/books/"+ book.id  , method="post")
+    include form
+
+  div
+    a(href="/books/" + book.id + "/delete") Delete Book

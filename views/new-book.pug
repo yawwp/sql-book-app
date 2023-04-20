@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h2= title
+  
+  include page-not-found 
+  
+  form(action="/books/new" href='/books' method="post")
+    include form
