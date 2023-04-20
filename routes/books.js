@@ -37,7 +37,6 @@ router.use((err, req, res, next) => {
 /* GET books listing. */
 router.get('/', asyncHandler(async(req,res) => {
     const books = await Book.findAll();
-    console.log(books);
     const data = books.map(book => book.toJSON());
     res.render('books', { data });
 }));
@@ -73,7 +72,7 @@ router.get('/:id', async function(req, res){
   } else {
     const bookData = await Book.findByPk(req.params.id);
     const book = bookData.toJSON()
-    res.render('edit', { book, title: "Edit Book" });
+    res.render('update-book', { book, title: "Edit Book" });
   }
 });
 
@@ -95,7 +94,7 @@ router.post('/:id', asyncHandler(async (req, res) => {
       book = await Book.build(req.body);
       book.id = req.params.id;
       
-      res.render("edit", { book, errors: error.errors, title: "Edit Book" })
+      res.render("update-book", { book, errors: error.errors, title: "Edit Book" })
     } else {
       throw error;
     }
